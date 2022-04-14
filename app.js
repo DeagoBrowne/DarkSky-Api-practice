@@ -20,13 +20,22 @@ window.addEventListener('load', ()=> {
                  return response.json();
              })
              .then(data =>{
+                 console.log(data);
                 // Set DOM Elements from the API
                 temperatureDegree.textContent = (data.main.temp - 273.15).toFixed(1);
                 temperatureDescription.textContent = data.weather.description;
-                locationTimezone.textContent = data.name;
+                locationTimezone.textContent = `${data.name}, ${data.sys.country}`;
+                // set icon
+                setIcons( document.querySelector('.icon'));
              })
-             });
+         });
+       
+    }
 
-           
+    function setIcons( iconID){
+        const Skycons = new Skycons({color: "white"});
+        const currentIcon = data.weather.main.toUpperCase();
+        skycons.play();
+        return skycons.set(iconID, Skycons[currentIcon]);
     }
 })
